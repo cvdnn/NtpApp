@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
- ./gradlew -p lib_dlt clean build bintrayUpload
+ ./gradlew -p lib_ntp clean build bintrayUpload
