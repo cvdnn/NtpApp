@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         mLabelView = findViewById(R.id.label);
 
-
         mLabelView.setText(DateFormat.format("当前时间：yyyy-MM-dd HH:mm:ss\n", System.currentTimeMillis()));
     }
 
