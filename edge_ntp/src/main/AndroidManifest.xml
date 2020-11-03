@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xrj.ntp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <provider
+            android:name="com.xrj.ntp.Sntp$Initializer"
+            android:authorities="${applicationId}.tasks"
+            android:exported="false"
+            android:multiprocess="true" />
+    </application>
+</manifest>

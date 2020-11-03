@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+
+        versionCode buildVersion()
+        versionName "0.5.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.cvdnn:android-lang:0.5.0'
+    implementation 'com.squareup.okio:okio:2.8.0'
+
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+// push to bintray
+// push to bintray
+ext {
+    archiveSourceJar = false
+    archiveJavaDocJar = false
+    bintrayOverride = true
+
+    bintrayOrg = 'cvdnn'
+    // bintray中创建的package name
+    bintrayName = 'edge-ntp'
+
+    libraryName = 'Edge NTP'
+    publishedGroupId = 'com.cvdnn'
+    artifact = 'edge-ntp'
+    libraryVersion = android.defaultConfig.versionName
+
+    libraryDescription = 'Android Lang'
+
+    siteUrl = 'https://github.com/cvdnn/NtpApp'
+    gitUrl = 'https://github.com/cvdnn/NtpApp.git'
+}
+
+apply from: 'http://mvn.cvdnn.com/pom_build.gradle'
+apply from: 'http://mvn.cvdnn.com/push_to_bintray.gradle'

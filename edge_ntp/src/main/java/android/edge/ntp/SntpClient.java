@@ -1,4 +1,4 @@
-package com.xrj.ntp;
+package android.edge.ntp;
 
 import android.os.SystemClock;
 import android.util.Log;
@@ -56,6 +56,7 @@ public class SntpClient {
      * Sends an SNTP request to the given host and processes the response.
      *
      * @param host host name of the server.
+     *
      * @return true if the transaction was successful.
      */
     public boolean requestTime(String host) {
@@ -75,6 +76,7 @@ public class SntpClient {
      *
      * @param host    host name of the server.
      * @param timeout network timeout in milliseconds.
+     *
      * @return true if the transaction was successful.
      */
     public boolean requestTime(String host, int timeout) {

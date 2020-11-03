@@ -1,7 +1,8 @@
-package com.xrj.ntp;
+package android.edge.ntp;
 
 import android.assist.Shell;
 import android.content.Context;
+import android.reflect.Clazz;
 import android.reflect.ClazzLoader;
 import android.text.format.DateFormat;
 
@@ -11,7 +12,7 @@ public final class Sntp {
     public static final String NTP_SERVER = "ntp_server";
     public static final String NTP_ADDRESS = "ntp3.aliyun.com";
 
-    public static Sntp Impl = new Sntp();
+    public final static Sntp Impl = new Sntp();
 
     private final SntpClient mSntpClient = new SntpClient();
 
@@ -21,10 +22,10 @@ public final class Sntp {
     private int mTimeout;
 
 
-    public void load(Context ctx) {
+    protected void load(Context ctx) {
         mContext = ctx;
 
-        Class rcls = ClazzLoader.forName("com.android.internal.R$integer");
+        Class rcls = Clazz.forName("com.android.internal.R$integer");
         int timeoutRid = ClazzLoader.getFieldValue(rcls, "config_ntpTimeout");
         mTimeout = mContext.getResources().getInteger(timeoutRid);
     }
@@ -39,8 +40,14 @@ public final class Sntp {
     }
 
     public Shell.CommandResult setTimeMillis(long time) {
-        return Shell.execute(String.format("date -s %s",
-                DateFormat.format("yyyyMMdd.HHmmss", time)), true);
+        Shell.CommandResult result = Shell.execute(String.format("date -s %s", DateFormat.format("yyyyMMdd.HHmmss", time)), true);
+        if (!Shell.CommandResult.success(result)) {
+            // 尝试第2种方法
+            String cmd = String.format("date %s", DateFormat.format("MMddHHmmyyyy", Sntp.Impl.client().getNtpTime()));
+            result = Shell.execute(cmd, true);
+        }
+
+        return result;
     }
 
     public Shell.CommandResult setTimeMillis() {
@@ -65,5 +72,15 @@ public final class Sntp {
         mTimeout = timeout;
 
         return this;
+    }
+
+    public static final class Initializer extends AbstractInitializer {
+
+        @Override
+        public boolean onCreate() {
+            Impl.load(getContext());
+
+            return true;
+        }
     }
 }

@@ -1,0 +1,20 @@
+def buildVersion() {
+    return new Date().format("yyyyMMddHH", TimeZone.getTimeZone("GMT+8")).toInteger()
+}
+
+ext {
+    aptVersionCode = buildVersion()
+}
+
+ext {
+    // 默认 maven
+    bintrayRepo = 'maven'
+
+    developerId = 'cvdnn'
+    developerName = 'CvDnn'
+    developerEmail = 'cvvdnn@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}

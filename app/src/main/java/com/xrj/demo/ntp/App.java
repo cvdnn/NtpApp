@@ -10,7 +10,5 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        Sntp.Impl.load(getApplicationContext());
     }
 }

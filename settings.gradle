@@ -1,1 +1,1 @@
-include ':app', ':lib_ntp'
+include ':app', ':edge_ntp'
