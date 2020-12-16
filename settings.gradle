@@ -1,1 +1,1 @@
-include ':app', ':edge_ntp'
+include ':app', ':edge-ntp'

@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
 
         versionCode buildVersion()
-        versionName "0.5.1"
+        versionName "0.5.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,7 +25,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.cvdnn:android-lang:0.5.0'
+    implementation 'com.cvdnn:android-lang:0.5.35'
     implementation 'com.squareup.okio:okio:2.8.0'
 
     testImplementation 'junit:junit:4.13'
@@ -33,7 +33,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
-// push to bintray
 // push to bintray
 ext {
     archiveSourceJar = false

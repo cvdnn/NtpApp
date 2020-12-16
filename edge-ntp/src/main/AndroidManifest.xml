@@ -6,7 +6,7 @@
 
     <application>
         <provider
-            android:name="com.xrj.ntp.Sntp$Initializer"
+            android:name="android.edge.ntp.Sntp$Initializer"
             android:authorities="${applicationId}.tasks"
             android:exported="false"
             android:multiprocess="true" />
